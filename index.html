@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HCB x MetLife | Claims Delivery Reporting Mock-up</title>
+  <style>
+    :root{
+      --hcb-blue:#0786bd;
+      --hcb-green:#77a832;
+      --ink:#1e2b35;
+      --muted:#62717d;
+      --line:#d9e2e8;
+      --soft:#f5f9fb;
+      --warn:#f3a43b;
+      --good:#2c9a57;
+      --risk:#c64b4b;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#f2f8fb 0%,#ffffff 36%);
+    }
+    .page{max-width:1180px;margin:0 auto;padding:28px 30px 44px}
+    .topbar{
+      display:flex;justify-content:space-between;align-items:center;gap:20px;
+      border-bottom:4px solid var(--hcb-green);padding-bottom:18px;margin-bottom:22px;
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo-mark{
+      width:58px;height:58px;border-radius:50%;border:5px solid var(--hcb-blue);position:relative;background:#fff;
+      box-shadow:0 0 0 6px rgba(119,168,50,.08);
+    }
+    .logo-mark:before,.logo-mark:after{content:"";position:absolute;border-radius:50%;background:var(--hcb-green)}
+    .logo-mark:before{width:14px;height:14px;left:7px;top:7px}
+    .logo-mark:after{width:12px;height:12px;right:8px;bottom:9px;background:var(--hcb-blue)}
+    .brand-title{font-size:31px;font-weight:800;letter-spacing:.4px;color:var(--hcb-blue);line-height:1}
+    .brand-title span{color:var(--hcb-green)}
+    .doc-meta{text-align:right;color:var(--muted);font-size:13px;line-height:1.45}
+    h1{font-size:28px;margin:8px 0 8px;color:var(--ink)}
+    .subtitle{font-size:16px;color:var(--muted);max-width:930px;line-height:1.45;margin:0 0 24px}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 24px}
+    .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;color:#354653}
+    .grid{display:grid;gap:16px}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    .grid.cols-3{grid-template-columns:1.1fr 1fr 1fr}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(16,45,67,.06);overflow:hidden}
+    .card .head{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .card h2{font-size:16px;margin:0;color:var(--hcb-blue)}
+    .card .body{padding:16px}
+    .metric{padding:16px;border-left:5px solid var(--hcb-blue)}
+    .metric.green{border-left-color:var(--hcb-green)}
+    .metric.warn{border-left-color:var(--warn)}
+    .metric.risk{border-left-color:var(--risk)}
+    .metric .label{font-size:12px;text-transform:uppercase;color:var(--muted);font-weight:700;letter-spacing:.45px;margin-bottom:8px}
+    .metric .value{font-size:28px;font-weight:800;color:var(--ink);margin-bottom:5px}
+    .metric .note{font-size:12px;color:var(--muted);line-height:1.35}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th{background:var(--hcb-blue);color:#fff;text-align:left;padding:11px 12px;font-weight:700;border-right:1px solid rgba(255,255,255,.24)}
+    th:last-child{border-right:0}
+    td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
+    tr:last-child td{border-bottom:0}
+    tr:nth-child(even) td{background:#fbfdfe}
+    .status{display:inline-block;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;white-space:nowrap}
+    .status.good{background:#e9f6ef;color:var(--good)}
+    .status.warn{background:#fff4df;color:#996313}
+    .status.risk{background:#fdeaea;color:var(--risk)}
+    .status.neutral{background:#eef4f8;color:#486170}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin:26px 0 12px}
+    .section-title h2{margin:0;font-size:20px;color:var(--ink)}
+    .section-title p{margin:0;font-size:13px;color:var(--muted)}
+    .callout{border-left:5px solid var(--hcb-green);background:#f6fbf2;padding:14px 16px;border-radius:10px;line-height:1.45;font-size:14px}
+    .diagram{display:grid;grid-template-columns:1fr 62px 1fr;align-items:center;gap:12px}
+    .box{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+    .box-title{padding:10px 12px;color:#fff;font-weight:700;font-size:13px;background:var(--hcb-green)}
+    .box-title.blue{background:var(--hcb-blue)}
+    .steps{padding:12px;display:grid;gap:8px}
+    .step{border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13px;background:#fbfdfe}
+    .arrow{text-align:center;color:var(--muted);font-weight:800;font-size:13px}
+    .footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:900px){.grid.cols-4,.grid.cols-3{grid-template-columns:1fr}.diagram{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.doc-meta{text-align:left}.topbar{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="brand-title">HCB <span>GROUP</span></div>
+      </div>
+      <div class="doc-meta">
+        <strong>Claims Delivery Reporting Framework</strong><br>
+        Draft mock-up for MetLife discussion<br>
+        Illustrative data only | Version 0.1
+      </div>
+    </header>
+
+    <h1>Standardised Cross-Geography Reporting for IP and TPD Claim Support</h1>
+    <p class="subtitle">Purpose: create one reporting language across Australia, the United States and South Africa while allowing for country-specific claim rules, evidence standards, terminology, regulatory requirements and escalation pathways.</p>
+    <div class="pillrow">
+      <span class="pill">One global dashboard</span>
+      <span class="pill">Country-specific addenda</span>
+      <span class="pill">Common quality scorecard</span>
+      <span class="pill">MetLife decision boundary retained</span>
+      <span class="pill">Weekly operational review</span>
+      <span class="pill">Monthly governance pack</span>
+    </div>
+
+    <section class="grid cols-4">
+      <div class="card metric">
+        <div class="label">Backlog position</div>
+        <div class="value">5,000</div>
+        <div class="note">Opening backlog to be baselined by MetLife and segmented by claim type, age, complexity and jurisdiction.</div>
+      </div>
+      <div class="card metric green">
+        <div class="label">Recommendation standard</div>
+        <div class="value">1</div>
+        <div class="note">Single HCB recommendation template, with country-specific guidance notes where required.</div>
+      </div>
+      <div class="card metric warn">
+        <div class="label">QA calibration</div>
+        <div class="value">Weekly</div>
+        <div class="note">Joint calibration between MetLife and HCB to ensure consistency of quality and summary recommendations.</div>
+      </div>
+      <div class="card metric risk">
+        <div class="label">Escalation triggers</div>
+        <div class="value">Defined</div>
+        <div class="note">Complex, high-risk, inconsistent or jurisdiction-specific matters are escalated before recommendation finalisation.</div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>1. Proposed reporting model</h2>
+      <p>Reporting built around agreed deliverables, not geography alone.</p>
+    </div>
+    <section class="grid cols-3">
+      <div class="card">
+        <div class="head"><h2>Operational dashboard</h2><span class="status good">Weekly</span></div>
+        <div class="body">
+          <table>
+            <tr><td>Throughput by assessor, country and claim type</td></tr>
+            <tr><td>Ageing and backlog movement</td></tr>
+            <tr><td>Cases awaiting information or MetLife decision</td></tr>
+            <tr><td>Cycle time from allocation to recommendation</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="head"><h2>Quality and consistency pack</h2><span class="status warn">Weekly / Monthly</span></div>
+        <div class="body">
+          <table>
+            <tr><td>QA sample results and trend by geography</td></tr>
+            <tr><td>Common error themes and root causes</td></tr>
+            <tr><td>Calibration outcomes and action owners</td></tr>
+            <tr><td>Recommendation quality and evidence sufficiency</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="head"><h2>Governance pack</h2><span class="status neutral">Monthly</span></div>
+        <div class="body">
+          <table>
+            <tr><td>SLA position, risks and decisions required</td></tr>
+            <tr><td>Security, access and audit exceptions</td></tr>
+            <tr><td>Country-specific reporting limitations</td></tr>
+            <tr><td>Board / Trustee view where required</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>2. Decision boundary and handoff</h2>
+      <p>HCB analyses and recommends; MetLife decides and communicates.</p>
+    </div>
+    <section class="card">
+      <div class="body diagram">
+        <div class="box">
+          <div class="box-title">HCB delivery team - analysis and recommendation</div>
+          <div class="steps">
+            <div class="step">Review claim file, medical, occupational, financial and policy evidence.</div>
+            <div class="step">Apply agreed MetLife process, country guidance and recommendation template.</div>
+            <div class="step">Identify risks, inconsistencies, evidence gaps and escalation triggers.</div>
+            <div class="step">Produce structured recommendation and contemporaneous file note.</div>
+          </div>
+        </div>
+        <div class="arrow">HANDOFF</div>
+        <div class="box">
+          <div class="box-title blue">MetLife - decision and customer ownership</div>
+          <div class="steps">
+            <div class="step">Review HCB recommendation and supporting analysis.</div>
+            <div class="step">Approve, decline, request further information or redirect strategy.</div>
+            <div class="step">Retain final claim authority and regulatory correspondence.</div>
+            <div class="step">Communicate with policyholder / member through agreed channels.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>3. Country-specific reporting alignment</h2>
+      <p>Same reporting structure; local interpretation captured explicitly.</p>
+    </div>
+    <section class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Reporting dimension</th>
+            <th>Australia</th>
+            <th>United States</th>
+            <th>South Africa</th>
+            <th>Standardisation control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Claim terminology</strong></td>
+            <td>IP / TPD and trustee requirements</td>
+            <td>Disability claims terminology and reserve focus</td>
+            <td>Specialist assessment and case management language</td>
+            <td>Common glossary agreed before go-live</td>
+          </tr>
+          <tr>
+            <td><strong>Evidence assessment</strong></td>
+            <td>Medical, financial, occupational and policy wording</td>
+            <td>Medical and functional capacity, policy and reserve context</td>
+            <td>BioPsychoSocial, medical and occupational assessment</td>
+            <td>Recommendation template with evidence sufficiency section</td>
+          </tr>
+          <tr>
+            <td><strong>Quality scoring</strong></td>
+            <td>Aligned to MetLife Australia QA framework</td>
+            <td>Mapped where US standards differ</td>
+            <td>Mapped to Australian engagement requirements</td>
+            <td>Joint calibration and QA sampling</td>
+          </tr>
+          <tr>
+            <td><strong>Escalation</strong></td>
+            <td>MetLife Australia operational sponsor</td>
+            <td>Named MetLife / HCB escalation contact</td>
+            <td>Named HCB engagement lead</td>
+            <td>Single risk and decision log</td>
+          </tr>
+          <tr>
+            <td><strong>Reporting output</strong></td>
+            <td>Trustee / Board-ready monthly pack</td>
+            <td>Operational and financial insight where agreed</td>
+            <td>Delivery performance and QA reporting</td>
+            <td>One dashboard with country addenda</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="section-title">
+      <h2>4. Draft KPI view</h2>
+      <p>Illustrative only; final metrics to follow agreed SOW deliverables.</p>
+    </div>
+    <section class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>KPI</th>
+            <th>Definition to agree</th>
+            <th>Target / tolerance</th>
+            <th>Frequency</th>
+            <th>Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Claims reviewed</strong></td>
+            <td>Cases assessed to recommendation stage</td>
+            <td><span class="status neutral">To be baselined</span></td>
+            <td>Weekly</td>
+            <td>HCB engagement lead</td>
+          </tr>
+          <tr>
+            <td><strong>Recommendation quality</strong></td>
+            <td>Accuracy, evidence sufficiency, reasoning and file note completeness</td>
+            <td><span class="status good">Threshold to agree</span></td>
+            <td>Weekly / Monthly</td>
+            <td>MetLife QA + HCB QA</td>
+          </tr>
+          <tr>
+            <td><strong>Turnaround time</strong></td>
+            <td>Allocation date to recommendation submission</td>
+            <td><span class="status warn">By claim segment</span></td>
+            <td>Weekly</td>
+            <td>Operations</td>
+          </tr>
+          <tr>
+            <td><strong>Escalation rate</strong></td>
+            <td>Cases requiring MetLife intervention before recommendation</td>
+            <td><span class="status neutral">Trend monitored</span></td>
+            <td>Weekly</td>
+            <td>Joint governance forum</td>
+          </tr>
+          <tr>
+            <td><strong>Backlog movement</strong></td>
+            <td>Opening backlog, new allocations, completed recommendations, closing backlog</td>
+            <td><span class="status good">Reduction plan</span></td>
+            <td>Weekly / Monthly</td>
+            <td>MetLife + HCB</td>
+          </tr>
+          <tr>
+            <td><strong>Security exceptions</strong></td>
+            <td>Access, data, privacy or system-control exceptions</td>
+            <td><span class="status risk">Zero tolerance</span></td>
+            <td>Immediate / Monthly</td>
+            <td>Security and governance leads</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="section-title">
+      <h2>5. Items to confirm with MetLife</h2>
+      <p>Use this as the bridge from email clarification to delivery design.</p>
+    </div>
+    <div class="callout">
+      Confirm the scope of services, the decision boundary, the deliverables to be produced by HCB, the required reporting audience, the frequency of reporting, the country-specific information that must be captured, and the minimum quality evidence MetLife expects before a recommendation is accepted.
+    </div>
+
+    <footer class="footer">
+      <span>Prepared as a discussion mock-up for HCB Group.</span>
+      <span>Not a final SOW, contract, SLA or regulatory reporting pack.</span>
+    </footer>
+  </main>
+</body>
+</html>
