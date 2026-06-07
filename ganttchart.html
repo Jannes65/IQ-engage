@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HCB x MetLife - Preliminary Project Plan Gantt</title>
+<style>
+:root {
+  --ink:#1f2937; --muted:#667085; --line:#e4e7ec; --paper:#ffffff; --soft:#f8fafc;
+  --blue:#0b7fab; --green:#76a82a; --teal:#15a3a3; --orange:#d97706; --purple:#7c3aed;
+  --red:#b42318; --gray:#475467; --navy:#184e77;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--ink); background:#f3f6f8; }
+.wrapper { max-width:1320px; margin:0 auto; padding:28px; }
+.hero { background:linear-gradient(135deg,#ffffff 0%,#f4fbfd 100%); border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:0 12px 30px rgba(16,24,40,.08); }
+.kicker { letter-spacing:.08em; text-transform:uppercase; color:var(--blue); font-weight:700; font-size:12px; }
+h1 { margin:8px 0 8px; font-size:32px; line-height:1.15; }
+.subtitle { margin:0; color:var(--muted); max-width:900px; line-height:1.55; }
+.meta { display:grid; grid-template-columns:repeat(4,minmax(160px,1fr)); gap:12px; margin-top:22px; }
+.meta div { background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+.meta span { display:block; color:var(--muted); font-size:12px; margin-bottom:4px; }
+.meta strong { font-size:14px; }
+.panel { background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:22px; margin-top:22px; box-shadow:0 8px 20px rgba(16,24,40,.05); }
+h2 { margin:0 0 14px; font-size:20px; }
+.notes { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; }
+.notes ul { margin:8px 0 0; padding-left:20px; line-height:1.55; color:#344054; }
+.callout { border-left:5px solid var(--blue); background:#f0f9ff; padding:14px 16px; border-radius:12px; line-height:1.55; }
+.legend { display:flex; flex-wrap:wrap; gap:8px 14px; margin:10px 0 16px; color:var(--muted); font-size:13px; }
+.legend-item { display:inline-flex; align-items:center; gap:7px; }
+.legend-item i { width:12px; height:12px; border-radius:999px; display:inline-block; }
+.gantt { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:#fff; }
+.gantt-inner { min-width:1120px; }
+.header-row { display:grid; grid-template-columns:360px 1fr; border-bottom:1px solid var(--line); background:#f9fafb; position:sticky; top:0; z-index:2; }
+.header-row .label-head { padding:12px 14px; font-weight:700; color:#344054; }
+.header-row .timeline-head { position:relative; height:48px; border-left:1px solid var(--line); }
+.tick { position:absolute; top:0; bottom:0; border-left:1px solid #d0d5dd; }
+.tick span { position:absolute; top:8px; left:4px; font-size:11px; color:#667085; }
+.row { display:grid; grid-template-columns:360px 1fr; min-height:54px; border-bottom:1px solid #eef2f6; }
+.row:last-child { border-bottom:none; }
+.label { padding:10px 14px; background:#fff; }
+.label strong { display:block; font-size:13.5px; line-height:1.3; }
+.label small { display:block; color:#667085; font-size:12px; margin-top:4px; line-height:1.35; }
+.timeline { position:relative; border-left:1px solid var(--line); background:repeating-linear-gradient(90deg,#fff 0,#fff calc(7.6923% - 1px),#f2f4f7 calc(7.6923% - 1px),#f2f4f7 7.6923%); }
+.bar { position:absolute; top:13px; height:28px; border-radius:999px; color:#fff; box-shadow:0 3px 8px rgba(16,24,40,.16); display:flex; align-items:center; justify-content:center; overflow:hidden; white-space:nowrap; min-width:22px; }
+.bar span { font-size:11px; font-weight:700; text-shadow:0 1px 2px rgba(0,0,0,.25); }
+.design { background:var(--blue); }
+.reporting { background:var(--green); }
+.governance { background:var(--navy); }
+.risk { background:var(--orange); }
+.technology { background:var(--teal); }
+.mobilisation { background:var(--purple); }
+.delivery { background:var(--gray); }
+.exit { background:var(--red); }
+.phase-heading { background:#eef6f8; color:#0b5f7a; font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:12px; padding:10px 14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.summary-row .label { background:#fbfdff; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th, td { text-align:left; vertical-align:top; border-bottom:1px solid var(--line); padding:9px 10px; }
+th { background:#f9fafb; color:#344054; position:sticky; top:0; }
+.table-wrap { overflow:auto; max-height:620px; border:1px solid var(--line); border-radius:14px; }
+.footer { color:#667085; font-size:12px; margin:18px 2px; line-height:1.5; }
+@media print { body { background:#fff; } .wrapper { padding:10px; } .panel, .hero { box-shadow:none; } .gantt { overflow:visible; } .gantt-inner { min-width:0; } .header-row, .row { grid-template-columns:320px 1fr; } .meta { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:900px) { .wrapper { padding:16px; } .meta, .notes { grid-template-columns:1fr; } h1 { font-size:26px; } }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <section class="hero">
+    <div class="kicker">Working draft for discussion</div>
+    <h1>HCB x MetLife Preliminary Project Plan</h1>
+    <p class="subtitle">Relative Gantt plan for a cross-border claims support engagement. Week 0 is assumed to be Trustee / SOW approval. The timeline is deliberately conservative and allows for the proposal assumption that set-up, access, compliance and onboarding may take approximately three to six months before steady-state delivery.</p>
+    <div class="meta">
+      <div><span>Planning basis</span><strong>Relative weeks from approval</strong></div>
+      <div><span>Total view</span><strong>52-week engagement horizon</strong></div>
+      <div><span>Critical path</span><strong>Scope + security + VDI + QA calibration</strong></div>
+      <div><span>Key control</span><strong>Reporting consistency across geographies</strong></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Executive view</h2>
+    <div class="notes">
+      <div>
+        <p>This plan converts the email themes into workstreams: pre-mobilisation, mobilisation, delivery and transition. It also elevates reporting and QA calibration as a workstream because consistent recommendations, quality scoring and dashboard outputs will be the central control mechanism across Australia, the United States, the United Kingdom and South Africa.</p>
+        <ul>
+          <li>Use this as a discussion baseline, not a committed project schedule.</li>
+          <li>Dates should only be added after MetLife confirms scope, volumes, SLAs, system access lead times and reporting audiences.</li>
+          <li>The go-live decision should be gated by scope sign-off, contracting, security, VDI access, training, QA calibration and dashboard readiness.</li>
+        </ul>
+      </div>
+      <div class="callout"><strong>Reporting design principle:</strong><br>Reporting is not only a dashboard output. It is the governance control that proves whether delivery, quality, recommendations, exceptions and escalation are consistent across geographies while still allowing for country-specific differences.</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Summary Gantt</h2>
+    <div class="legend"><span class="legend-item"><i class="design"></i>Design / scope</span><span class="legend-item"><i class="reporting"></i>Reporting / QA</span><span class="legend-item"><i class="governance"></i>Governance</span><span class="legend-item"><i class="risk"></i>Risk / compliance</span><span class="legend-item"><i class="technology"></i>Technology</span><span class="legend-item"><i class="mobilisation"></i>Mobilisation</span><span class="legend-item"><i class="delivery"></i>Delivery</span><span class="legend-item"><i class="exit"></i>Transition / exit</span></div>
+    <div class="gantt"><div class="gantt-inner">
+      <div class="header-row"><div class="label-head">Phase</div><div class="timeline-head"><div class="tick" style="left:0.000%"><span>W0</span></div><div class="tick" style="left:7.692%"><span>W4</span></div><div class="tick" style="left:15.385%"><span>W8</span></div><div class="tick" style="left:23.077%"><span>W12</span></div><div class="tick" style="left:30.769%"><span>W16</span></div><div class="tick" style="left:38.462%"><span>W20</span></div><div class="tick" style="left:46.154%"><span>W24</span></div><div class="tick" style="left:53.846%"><span>W28</span></div><div class="tick" style="left:61.538%"><span>W32</span></div><div class="tick" style="left:69.231%"><span>W36</span></div><div class="tick" style="left:76.923%"><span>W40</span></div><div class="tick" style="left:84.615%"><span>W44</span></div><div class="tick" style="left:92.308%"><span>W48</span></div><div class="tick" style="left:100.000%"><span>W52</span></div></div></div>
+      
+    <div class="row summary-row">
+      <div class="label"><strong>Pre-Mobilisation / Design</strong><small>Scope, governance, reporting framework and operating model</small></div>
+      <div class="timeline"><div class="bar design" style="left:0.000%; width:19.231%"><span>W0-W10</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Commercial, Risk and Compliance</strong><small>Contracting, regulatory mapping, clearances and attestations</small></div>
+      <div class="timeline"><div class="bar risk" style="left:3.846%; width:34.615%"><span>W2-W20</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Technology Enablement</strong><small>VDI / Citrix, endpoint controls, MFA and access testing</small></div>
+      <div class="timeline"><div class="bar technology" style="left:3.846%; width:38.462%"><span>W2-W22</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Mobilisation / Readiness</strong><small>Resources, training, QA calibration and go-live readiness</small></div>
+      <div class="timeline"><div class="bar mobilisation" style="left:7.692%; width:38.462%"><span>W4-W24</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Ramp-up</strong><small>Pilot allocation, early reporting and performance calibration</small></div>
+      <div class="timeline"><div class="bar delivery" style="left:46.154%; width:19.231%"><span>W24-W34</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Full Delivery / Operational Control</strong><small>Backlog burn-down, weekly dashboards and monthly governance</small></div>
+      <div class="timeline"><div class="bar delivery" style="left:46.154%; width:53.846%"><span>W24-W52</span></div></div>
+    </div>
+    <div class="row summary-row">
+      <div class="label"><strong>Transition / Exit</strong><small>BAU handover, close-out and access revocation</small></div>
+      <div class="timeline"><div class="bar exit" style="left:84.615%; width:15.385%"><span>W44-W52</span></div></div>
+    </div>
+    </div></div>
+  </section>
+
+  <section class="panel">
+    <h2>Detailed Gantt</h2>
+    <div class="legend"><span class="legend-item"><i class="design"></i>Design / scope</span><span class="legend-item"><i class="reporting"></i>Reporting / QA</span><span class="legend-item"><i class="governance"></i>Governance</span><span class="legend-item"><i class="risk"></i>Risk / compliance</span><span class="legend-item"><i class="technology"></i>Technology</span><span class="legend-item"><i class="mobilisation"></i>Mobilisation</span><span class="legend-item"><i class="delivery"></i>Delivery</span><span class="legend-item"><i class="exit"></i>Transition / exit</span></div>
+    <div class="gantt"><div class="gantt-inner">
+      <div class="header-row"><div class="label-head">Task / Deliverable</div><div class="timeline-head"><div class="tick" style="left:0.000%"><span>W0</span></div><div class="tick" style="left:7.692%"><span>W4</span></div><div class="tick" style="left:15.385%"><span>W8</span></div><div class="tick" style="left:23.077%"><span>W12</span></div><div class="tick" style="left:30.769%"><span>W16</span></div><div class="tick" style="left:38.462%"><span>W20</span></div><div class="tick" style="left:46.154%"><span>W24</span></div><div class="tick" style="left:53.846%"><span>W28</span></div><div class="tick" style="left:61.538%"><span>W32</span></div><div class="tick" style="left:69.231%"><span>W36</span></div><div class="tick" style="left:76.923%"><span>W40</span></div><div class="tick" style="left:84.615%"><span>W44</span></div><div class="tick" style="left:92.308%"><span>W48</span></div><div class="tick" style="left:100.000%"><span>W52</span></div></div></div>
+      <div class="phase-heading">Pre-Mobilisation / Design</div>
+        <div class="row">
+          <div class="label"><strong>Trustee / SOW approval checkpoint</strong><small>MetLife + HCB | Approval basis and working assumptions confirmed</small></div>
+          <div class="timeline"><div class="bar design" style="left:0.000%; width:3.846%"><span>W0-W2</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Confirm scope, claim types, volumes and decision boundary</strong><small>MetLife + HCB | Signed-off scope and retained MetLife responsibilities</small></div>
+          <div class="timeline"><div class="bar design" style="left:0.000%; width:5.769%"><span>W0-W3</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Define reporting requirements and KPI dictionary</strong><small>MetLife + HCB | Reporting audience, cadence, data fields and KPI definitions</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:0.000%; width:7.692%"><span>W0-W4</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Establish programme governance and stakeholder matrix</strong><small>HCB PMO + MetLife sponsor | Governance forum, steering group and contact matrix</small></div>
+          <div class="timeline"><div class="bar governance" style="left:1.923%; width:5.769%"><span>W1-W4</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Create integrated project plan and RAID / decision logs</strong><small>HCB PMO | Baseline project plan, RAID, action and decision logs</small></div>
+          <div class="timeline"><div class="bar governance" style="left:1.923%; width:13.462%"><span>W1-W8</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Cross-border operating model and country variation matrix</strong><small>HCB + MetLife SMEs | Rules for geography-specific variation, escalation and terminology</small></div>
+          <div class="timeline"><div class="bar design" style="left:3.846%; width:11.538%"><span>W2-W8</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Workflow design, case segmentation and escalation rules</strong><small>MetLife Operations + HCB | Work allocation rules, backlog / BAU separation and escalation paths</small></div>
+          <div class="timeline"><div class="bar design" style="left:5.769%; width:9.615%"><span>W3-W8</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Recommendation template and QA scorecard design</strong><small>HCB QA + MetLife Claims | Standard recommendation format and quality measures</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:5.769%; width:13.462%"><span>W3-W10</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Dashboard and governance pack mock-up</strong><small>HCB PMO / Reporting | Weekly dashboard and monthly governance pack prototype</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:7.692%; width:11.538%"><span>W4-W10</span></div></div>
+        </div><div class="phase-heading">Commercial, Risk and Compliance</div>
+        <div class="row">
+          <div class="label"><strong>Contracting, MSA / SOW and regulatory clauses</strong><small>Legal + Procurement | Draft and executed contractual documents</small></div>
+          <div class="timeline"><div class="bar risk" style="left:3.846%; width:19.231%"><span>W2-W12</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Compliance requirements mapping</strong><small>MetLife Risk + HCB | Requirements matrix for privacy, security and operational risk obligations</small></div>
+          <div class="timeline"><div class="bar risk" style="left:7.692%; width:11.538%"><span>W4-W10</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Security approvals and background checks</strong><small>MetLife Security + HCB HR | Named assessor clearances and onboarding approval</small></div>
+          <div class="timeline"><div class="bar risk" style="left:11.538%; width:23.077%"><span>W6-W18</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Personnel controls, training attestations and acceptable use</strong><small>HCB HR + Compliance | Completed conduct, AML, privacy and security attestations</small></div>
+          <div class="timeline"><div class="bar risk" style="left:19.231%; width:19.231%"><span>W10-W20</span></div></div>
+        </div><div class="phase-heading">Technology Enablement</div>
+        <div class="row">
+          <div class="label"><strong>Technology and data security architecture confirmation</strong><small>MetLife IT + HCB IT | VDI / Citrix architecture and data handling controls</small></div>
+          <div class="timeline"><div class="bar technology" style="left:3.846%; width:11.538%"><span>W2-W8</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Endpoint readiness and device configuration</strong><small>HCB IT | Configured laptops, MFA, encryption and endpoint controls</small></div>
+          <div class="timeline"><div class="bar technology" style="left:11.538%; width:19.231%"><span>W6-W16</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Citrix / VDI provisioning</strong><small>MetLife IT | User access created and assigned</small></div>
+          <div class="timeline"><div class="bar technology" style="left:15.385%; width:23.077%"><span>W8-W20</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Access testing and user acceptance testing</strong><small>MetLife IT + HCB users | Validated access, performance and monitoring</small></div>
+          <div class="timeline"><div class="bar technology" style="left:34.615%; width:7.692%"><span>W18-W22</span></div></div>
+        </div><div class="phase-heading">Mobilisation / Readiness</div>
+        <div class="row">
+          <div class="label"><strong>Resource nomination and role allocation</strong><small>HCB Leadership | Confirmed engagement lead, assessors, QA and reporting roles</small></div>
+          <div class="timeline"><div class="bar mobilisation" style="left:7.692%; width:15.385%"><span>W4-W12</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>MetLife process and system training</strong><small>MetLife Claims + HCB | Training completed for assessors and leads</small></div>
+          <div class="timeline"><div class="bar mobilisation" style="left:23.077%; width:17.308%"><span>W12-W21</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>QA calibration using sample cases</strong><small>MetLife Claims + HCB QA | Calibration outcomes, rework themes and final QA rules</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:26.923%; width:17.308%"><span>W14-W23</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Operational readiness and go-live review</strong><small>Steering Group | Joint go-live readiness sign-off</small></div>
+          <div class="timeline"><div class="bar mobilisation" style="left:42.308%; width:3.846%"><span>W22-W24</span></div></div>
+        </div><div class="phase-heading">Ramp-up</div>
+        <div class="row">
+          <div class="label"><strong>Pilot case allocation and controlled ramp-up</strong><small>MetLife Ops + HCB Lead | Controlled allocation of initial backlog cases</small></div>
+          <div class="timeline"><div class="bar delivery" style="left:46.154%; width:11.538%"><span>W24-W30</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Early reporting and feedback cycles</strong><small>HCB Reporting + MetLife | Weekly early dashboard, QA feedback and fixes</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:46.154%; width:15.385%"><span>W24-W32</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Throughput, quality and recommendation calibration</strong><small>HCB QA + MetLife Claims | Confirmed production QA baseline</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:46.154%; width:19.231%"><span>W24-W34</span></div></div>
+        </div><div class="phase-heading">Full Delivery / Operational Control</div>
+        <div class="row">
+          <div class="label"><strong>Steady-state backlog processing</strong><small>HCB Assessors | Ongoing claim assessment, case progression and recommendations</small></div>
+          <div class="timeline"><div class="bar delivery" style="left:57.692%; width:42.308%"><span>W30-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Weekly dashboard and backlog burn-down reporting</strong><small>HCB PMO / Reporting | Weekly operational dashboard and action log</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:46.154%; width:53.846%"><span>W24-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Monthly governance / Trustee reporting</strong><small>HCB Lead + MetLife Sponsor | Monthly governance pack, risks, KPIs and decisions</small></div>
+          <div class="timeline"><div class="bar governance" style="left:53.846%; width:46.154%"><span>W28-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Operational risk reviews and issue management</strong><small>Steering Group | Maintained RAID, issue resolution and escalations</small></div>
+          <div class="timeline"><div class="bar governance" style="left:46.154%; width:53.846%"><span>W24-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Continuous quality reviews and feedback loops</strong><small>HCB QA + MetLife Claims | QA findings, rework themes and calibration actions</small></div>
+          <div class="timeline"><div class="bar reporting" style="left:53.846%; width:46.154%"><span>W28-W52</span></div></div>
+        </div><div class="phase-heading">Transition / Exit</div>
+        <div class="row">
+          <div class="label"><strong>Define BAU threshold and transition criteria</strong><small>MetLife + HCB | Exit criteria and handover plan</small></div>
+          <div class="timeline"><div class="bar exit" style="left:84.615%; width:7.692%"><span>W44-W48</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Knowledge transfer and BAU handover</strong><small>HCB Lead + MetLife Ops | Handover documentation and open-case summary</small></div>
+          <div class="timeline"><div class="bar exit" style="left:92.308%; width:7.692%"><span>W48-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Final quality, benefits and close-out report</strong><small>HCB PMO + MetLife Sponsor | Final benefits report, lessons learned and recommendations</small></div>
+          <div class="timeline"><div class="bar exit" style="left:94.231%; width:5.769%"><span>W49-W52</span></div></div>
+        </div>
+        <div class="row">
+          <div class="label"><strong>Controlled access revocation and resource wind-down</strong><small>MetLife IT + HCB IT | Access removed and resources stood down</small></div>
+          <div class="timeline"><div class="bar exit" style="left:96.154%; width:3.846%"><span>W50-W52</span></div></div>
+        </div>
+    </div></div>
+  </section>
+
+  <section class="panel">
+    <h2>Task register</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Phase</th><th>Task</th><th>Start</th><th>End</th><th>Duration</th><th>Owner</th><th>Output</th><th>Dependency</th></tr></thead>
+        <tbody>
+    <tr>
+      <td>1</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Trustee / SOW approval checkpoint</td>
+      <td>W0</td>
+      <td>W2</td>
+      <td>2 weeks</td>
+      <td>MetLife + HCB</td>
+      <td>Approval basis and working assumptions confirmed</td>
+      <td>Initial MetLife response</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Confirm scope, claim types, volumes and decision boundary</td>
+      <td>W0</td>
+      <td>W3</td>
+      <td>3 weeks</td>
+      <td>MetLife + HCB</td>
+      <td>Signed-off scope and retained MetLife responsibilities</td>
+      <td>Approval checkpoint</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Define reporting requirements and KPI dictionary</td>
+      <td>W0</td>
+      <td>W4</td>
+      <td>4 weeks</td>
+      <td>MetLife + HCB</td>
+      <td>Reporting audience, cadence, data fields and KPI definitions</td>
+      <td>Scope confirmation</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Establish programme governance and stakeholder matrix</td>
+      <td>W1</td>
+      <td>W4</td>
+      <td>3 weeks</td>
+      <td>HCB PMO + MetLife sponsor</td>
+      <td>Governance forum, steering group and contact matrix</td>
+      <td>Approval checkpoint</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Create integrated project plan and RAID / decision logs</td>
+      <td>W1</td>
+      <td>W8</td>
+      <td>7 weeks</td>
+      <td>HCB PMO</td>
+      <td>Baseline project plan, RAID, action and decision logs</td>
+      <td>Governance model</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Cross-border operating model and country variation matrix</td>
+      <td>W2</td>
+      <td>W8</td>
+      <td>6 weeks</td>
+      <td>HCB + MetLife SMEs</td>
+      <td>Rules for geography-specific variation, escalation and terminology</td>
+      <td>Scope and reporting workshops</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Workflow design, case segmentation and escalation rules</td>
+      <td>W3</td>
+      <td>W8</td>
+      <td>5 weeks</td>
+      <td>MetLife Operations + HCB</td>
+      <td>Work allocation rules, backlog / BAU separation and escalation paths</td>
+      <td>Scope and operating model</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Recommendation template and QA scorecard design</td>
+      <td>W3</td>
+      <td>W10</td>
+      <td>7 weeks</td>
+      <td>HCB QA + MetLife Claims</td>
+      <td>Standard recommendation format and quality measures</td>
+      <td>Reporting and KPI dictionary</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Pre-Mobilisation / Design</td>
+      <td>Dashboard and governance pack mock-up</td>
+      <td>W4</td>
+      <td>W10</td>
+      <td>6 weeks</td>
+      <td>HCB PMO / Reporting</td>
+      <td>Weekly dashboard and monthly governance pack prototype</td>
+      <td>Reporting requirements</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Commercial, Risk and Compliance</td>
+      <td>Contracting, MSA / SOW and regulatory clauses</td>
+      <td>W2</td>
+      <td>W12</td>
+      <td>10 weeks</td>
+      <td>Legal + Procurement</td>
+      <td>Draft and executed contractual documents</td>
+      <td>Scope and decision boundary</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Commercial, Risk and Compliance</td>
+      <td>Compliance requirements mapping</td>
+      <td>W4</td>
+      <td>W10</td>
+      <td>6 weeks</td>
+      <td>MetLife Risk + HCB</td>
+      <td>Requirements matrix for privacy, security and operational risk obligations</td>
+      <td>Regulatory input</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Commercial, Risk and Compliance</td>
+      <td>Security approvals and background checks</td>
+      <td>W6</td>
+      <td>W18</td>
+      <td>12 weeks</td>
+      <td>MetLife Security + HCB HR</td>
+      <td>Named assessor clearances and onboarding approval</td>
+      <td>Nominated resource list</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Commercial, Risk and Compliance</td>
+      <td>Personnel controls, training attestations and acceptable use</td>
+      <td>W10</td>
+      <td>W20</td>
+      <td>10 weeks</td>
+      <td>HCB HR + Compliance</td>
+      <td>Completed conduct, AML, privacy and security attestations</td>
+      <td>Compliance matrix</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Technology Enablement</td>
+      <td>Technology and data security architecture confirmation</td>
+      <td>W2</td>
+      <td>W8</td>
+      <td>6 weeks</td>
+      <td>MetLife IT + HCB IT</td>
+      <td>VDI / Citrix architecture and data handling controls</td>
+      <td>Security requirements</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Technology Enablement</td>
+      <td>Endpoint readiness and device configuration</td>
+      <td>W6</td>
+      <td>W16</td>
+      <td>10 weeks</td>
+      <td>HCB IT</td>
+      <td>Configured laptops, MFA, encryption and endpoint controls</td>
+      <td>Security architecture</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>Technology Enablement</td>
+      <td>Citrix / VDI provisioning</td>
+      <td>W8</td>
+      <td>W20</td>
+      <td>12 weeks</td>
+      <td>MetLife IT</td>
+      <td>User access created and assigned</td>
+      <td>Named users and security approval</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>Technology Enablement</td>
+      <td>Access testing and user acceptance testing</td>
+      <td>W18</td>
+      <td>W22</td>
+      <td>4 weeks</td>
+      <td>MetLife IT + HCB users</td>
+      <td>Validated access, performance and monitoring</td>
+      <td>VDI provisioning</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>Mobilisation / Readiness</td>
+      <td>Resource nomination and role allocation</td>
+      <td>W4</td>
+      <td>W12</td>
+      <td>8 weeks</td>
+      <td>HCB Leadership</td>
+      <td>Confirmed engagement lead, assessors, QA and reporting roles</td>
+      <td>Scope and demand estimate</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>Mobilisation / Readiness</td>
+      <td>MetLife process and system training</td>
+      <td>W12</td>
+      <td>W21</td>
+      <td>9 weeks</td>
+      <td>MetLife Claims + HCB</td>
+      <td>Training completed for assessors and leads</td>
+      <td>Access and training content</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>Mobilisation / Readiness</td>
+      <td>QA calibration using sample cases</td>
+      <td>W14</td>
+      <td>W23</td>
+      <td>9 weeks</td>
+      <td>MetLife Claims + HCB QA</td>
+      <td>Calibration outcomes, rework themes and final QA rules</td>
+      <td>Recommendation template and training</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>Mobilisation / Readiness</td>
+      <td>Operational readiness and go-live review</td>
+      <td>W22</td>
+      <td>W24</td>
+      <td>2 weeks</td>
+      <td>Steering Group</td>
+      <td>Joint go-live readiness sign-off</td>
+      <td>Testing, training, QA and reporting complete</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>Ramp-up</td>
+      <td>Pilot case allocation and controlled ramp-up</td>
+      <td>W24</td>
+      <td>W30</td>
+      <td>6 weeks</td>
+      <td>MetLife Ops + HCB Lead</td>
+      <td>Controlled allocation of initial backlog cases</td>
+      <td>Go-live sign-off</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>Ramp-up</td>
+      <td>Early reporting and feedback cycles</td>
+      <td>W24</td>
+      <td>W32</td>
+      <td>8 weeks</td>
+      <td>HCB Reporting + MetLife</td>
+      <td>Weekly early dashboard, QA feedback and fixes</td>
+      <td>Pilot case allocation</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>Ramp-up</td>
+      <td>Throughput, quality and recommendation calibration</td>
+      <td>W24</td>
+      <td>W34</td>
+      <td>10 weeks</td>
+      <td>HCB QA + MetLife Claims</td>
+      <td>Confirmed production QA baseline</td>
+      <td>Pilot and early reports</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>Full Delivery / Operational Control</td>
+      <td>Steady-state backlog processing</td>
+      <td>W30</td>
+      <td>W52</td>
+      <td>22 weeks</td>
+      <td>HCB Assessors</td>
+      <td>Ongoing claim assessment, case progression and recommendations</td>
+      <td>Ramp-up stabilised</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>Full Delivery / Operational Control</td>
+      <td>Weekly dashboard and backlog burn-down reporting</td>
+      <td>W24</td>
+      <td>W52</td>
+      <td>28 weeks</td>
+      <td>HCB PMO / Reporting</td>
+      <td>Weekly operational dashboard and action log</td>
+      <td>Reporting pack approved</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>Full Delivery / Operational Control</td>
+      <td>Monthly governance / Trustee reporting</td>
+      <td>W28</td>
+      <td>W52</td>
+      <td>24 weeks</td>
+      <td>HCB Lead + MetLife Sponsor</td>
+      <td>Monthly governance pack, risks, KPIs and decisions</td>
+      <td>Steady-state governance cadence</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>Full Delivery / Operational Control</td>
+      <td>Operational risk reviews and issue management</td>
+      <td>W24</td>
+      <td>W52</td>
+      <td>28 weeks</td>
+      <td>Steering Group</td>
+      <td>Maintained RAID, issue resolution and escalations</td>
+      <td>Governance in place</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>Full Delivery / Operational Control</td>
+      <td>Continuous quality reviews and feedback loops</td>
+      <td>W28</td>
+      <td>W52</td>
+      <td>24 weeks</td>
+      <td>HCB QA + MetLife Claims</td>
+      <td>QA findings, rework themes and calibration actions</td>
+      <td>QA calibration baseline</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>Transition / Exit</td>
+      <td>Define BAU threshold and transition criteria</td>
+      <td>W44</td>
+      <td>W48</td>
+      <td>4 weeks</td>
+      <td>MetLife + HCB</td>
+      <td>Exit criteria and handover plan</td>
+      <td>Backlog trend and delivery forecast</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>Transition / Exit</td>
+      <td>Knowledge transfer and BAU handover</td>
+      <td>W48</td>
+      <td>W52</td>
+      <td>4 weeks</td>
+      <td>HCB Lead + MetLife Ops</td>
+      <td>Handover documentation and open-case summary</td>
+      <td>Exit criteria</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>Transition / Exit</td>
+      <td>Final quality, benefits and close-out report</td>
+      <td>W49</td>
+      <td>W52</td>
+      <td>3 weeks</td>
+      <td>HCB PMO + MetLife Sponsor</td>
+      <td>Final benefits report, lessons learned and recommendations</td>
+      <td>Delivery data and QA results</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>Transition / Exit</td>
+      <td>Controlled access revocation and resource wind-down</td>
+      <td>W50</td>
+      <td>W52</td>
+      <td>2 weeks</td>
+      <td>MetLife IT + HCB IT</td>
+      <td>Access removed and resources stood down</td>
+      <td>Close-out approval</td>
+    </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="footer">Prepared as a preliminary planning aid. This is not a contractual schedule. All dates, durations, dependencies, SLAs, volumes, reporting fields and responsibilities should be validated with MetLife before inclusion in a formal statement of work or mobilisation plan.</p>
+</div>
+</body>
+</html>
